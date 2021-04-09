@@ -26,6 +26,12 @@ public class RoomController {
         return repository.findAll(pageRequest);
     }
 
+    @GetMapping
+    public Page<Room> getAllById(@RequestParam("page") int page, @RequestParam("hotel_id") Long id){
+        PageRequest pageRequest = PageRequest.of(page,10);
+        return repository.getAllByHotelId(id, pageRequest);
+    }
+
     @PostMapping
     public void add(@RequestBody Room room) {
         repository.save(room);
